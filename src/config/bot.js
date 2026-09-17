@@ -475,6 +475,9 @@ export const botConfig = {
     fun: true,
     music: true,
   },
+   // =========================
+  // JAIL COMMANDS
+  // =========================
   @bot.command(/)
 @commands.has_permissions(manage_roles=True) # Restricts the command to staff
 async def jail(ctx, member: discord.Member, *, reason="No reason provided"):
@@ -488,9 +491,23 @@ async def jail(ctx, member: discord.Member, *, reason="No reason provided"):
     try:
         await member.remove_roles(*roles_to_remove, reason="Jailed")
         await member.add_roles(jail_role, reason=reason)
-        await ctx.send(f"🔒 **{member.display_name}** has been jailed! Reason: {reason}")
+        await ctx.send(f"🔒 **{member.display_name}** has been locked in the tomb! Reason: {reason}")
     except discord.Forbidden:
         await ctx.send("❌ I don't have permission to manage this member's roles. Check my role hierarchy!")
+
+@bot.command(/)
+@commands.has_permissions(manage_roles=True)
+async def unjail(ctx, member: discord.Member):
+    jail_role = discord.utils.get(ctx.guild.roles, name="Jailed")
+    
+    if jail_role in member.roles:
+        try:
+            await member.remove_roles(jail_role, reason="Unjailed")
+            await ctx.send(f"🔓 **{member.display_name}** has been released from the tomb.")
+        except discord.Forbidden:
+            await ctx.send("❌ Missing permissions to edit this user.")
+    else:
+        await ctx.send(f"ℹ️ {member.display_name} is not jailed.")
 };
 
 export function validateConfig(config) {
