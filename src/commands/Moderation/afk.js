@@ -148,8 +148,6 @@ module.exports = {
             ]
         });
     },
-
-
     // Export the AFK users so messageCreate.js can access them
     afkUsers
 };
