@@ -5,27 +5,18 @@ import {
 
 export default {
   data: new SlashCommandBuilder()
-    .setName("jail")
-    .setDescription("Jail a member.")
+    .setName("unjail")
+    .setDescription("Remove a member from jail.")
     .addUserOption(option =>
       option
         .setName("user")
-        .setDescription("The member to jail.")
+        .setDescription("The member to unjail.")
         .setRequired(true)
-    )
-    .addStringOption(option =>
-      option
-        .setName("reason")
-        .setDescription("Reason for the jail.")
-        .setRequired(false)
     )
     .setDefaultMemberPermissions(PermissionFlagsBits.ModerateMembers),
 
   async execute(interaction) {
     const user = interaction.options.getUser("user");
-    const reason =
-      interaction.options.getString("reason") || "No reason provided.";
-
     const member = await interaction.guild.members.fetch(user.id);
 
     const jailRole = interaction.guild.roles.cache.find(
@@ -39,17 +30,15 @@ export default {
       });
     }
 
-    if (member.roles.cache.has(jailRole.id)) {
+    if (!member.roles.cache.has(jailRole.id)) {
       return interaction.reply({
-        content: `${user} is already jailed.`,
+        content: `${user} is not in the tomb.`,
         ephemeral: true,
       });
     }
 
-    await member.roles.add(jailRole, reason);
+    await member.roles.remove(jailRole);
 
-    await interaction.reply(
-      `${user} has been jailed.\n**Reason:** ${reason}`
-    );
+    await interaction.reply(`${user} has been freed from the tomb.`);
   },
 };
