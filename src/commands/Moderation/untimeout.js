@@ -58,7 +58,7 @@ export default {
         await InteractionHelper.safeEditReply(interaction, {
             embeds: [
                 successEmbed(
-                    `🔓 **Removed timeout** from ${targetUser.tag}`,
+                    `The dagger has been removed from ${targetUser.tag}`,
                 ),
             ],
         });
