@@ -78,19 +78,26 @@ export default {
       );
     }
 
-    await member.roles.remove(jailRole, reason);
-const previousRoles = await db.get(`jailed_${member.id}`);
-if (previousRoles?.length) {
-    await member.roles.add(previousRoles, reason);
-    await db.delete(`jailed_${member.id}`);
+if (!member.roles.cache.has(jailRole.id)) {
+    throw new TitanBotError(
+        'Not jailed',
+        ErrorTypes.VALIDATION,
+        `${user.tag} is currently free.`
+    );
 }
-    await InteractionHelper.universalReply(interaction, {
-      embeds: [
+const previousRoles = await db.get(`jailed_${member.id}`);
+await member.roles.remove(jailRole, reason);
+if (Array.isArray(previousRoles) && previousRoles.length > 0) {
+    await member.roles.add(previousRoles, reason);
+}
+await db.delete(`jailed_${member.id}`);
+await InteractionHelper.universalReply(interaction, {
+    embeds: [
         successEmbed(
-          `🔓 ${user.tag} has been freed from the tomb.`,
-          `**Reason:** ${reason}`
+            `🔓 ${user.tag} has been freed from the tomb.`,
+            `**Reason:** ${reason}`
         ),
-      ],
-    });
+    ],
+});
   },
 };
