@@ -83,7 +83,7 @@ export default {
     await InteractionHelper.universalReply(interaction, {
       embeds: [
         successEmbed(
-          `🔓 **Unjailed** ${user.tag}`,
+          `🔓 ${user.tag} has been set free from the tomb.`,
           `**Reason:** ${reason}`
         ),
       ],
