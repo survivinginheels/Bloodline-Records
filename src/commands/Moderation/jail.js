@@ -50,7 +50,7 @@ export default {
       throw new TitanBotError(
         'Cannot jail self',
         ErrorTypes.VALIDATION,
-        'You cannot jail yourself.'
+        'You cannot lock yourself in the tomb.'
       );
     }
 
@@ -58,7 +58,7 @@ export default {
       throw new TitanBotError(
         'Cannot jail bot',
         ErrorTypes.VALIDATION,
-        'You cannot jail the bot.'
+        'There is no tombs made for bots.'
       );
     }
 
@@ -70,7 +70,7 @@ const member = await interaction.guild.members
       throw new TitanBotError(
         'User not found',
         ErrorTypes.USER_INPUT,
-        'That user is not in this server.'
+        'That being has disappeared.'
       );
     }
 
@@ -89,7 +89,7 @@ const member = await interaction.guild.members
       throw new TitanBotError(
         'Already jailed',
         ErrorTypes.VALIDATION,
-        `${user.tag} is already jailed.`
+        `${user.tag} is already locked in the tomb.`
       );
     }
 
