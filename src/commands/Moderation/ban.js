@@ -58,7 +58,7 @@ export default {
         await InteractionHelper.universalReply(interaction, {
             embeds: [
                 successEmbed(
-                    `${user.tag} has been staked.`,
+                    `${user.tag} has been exiled.`,
                     `**Reason:** ${reason}\n**Case ID:** #${result.caseId}`,
                 ),
             ],
