@@ -41,7 +41,7 @@ export default {
 
     if (member.roles.cache.has(jailRole.id)) {
       return interaction.reply({
-        content: `${user} is already jailed.`,
+        content: `${user} is already in the tomb.`,
         ephemeral: true,
       });
     }
@@ -49,7 +49,7 @@ export default {
     await member.roles.add(jailRole, reason);
 
     await interaction.reply(
-      `${user} has been jailed.\n**Reason:** ${reason}`
+      `${user} has been locked in the tomb.\n**Reason:** ${reason}`
     );
   },
 };
