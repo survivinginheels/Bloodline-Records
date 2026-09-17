@@ -99,7 +99,7 @@ export default {
     await InteractionHelper.universalReply(interaction, {
       embeds: [
         successEmbed(
-          `🔒 **Jailed** ${user.tag}`,
+          `🔒 ${user.tag} has been locked in the tomb.`,
           `**Reason:** ${reason}`
         ),
       ],
