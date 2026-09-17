@@ -79,7 +79,11 @@ export default {
     }
 
     await member.roles.remove(jailRole, reason);
-
+const previousRoles = await db.get(`jailed_${member.id}`);
+if (previousRoles?.length) {
+    await member.roles.add(previousRoles, reason);
+    await db.delete(`jailed_${member.id}`);
+}
     await InteractionHelper.universalReply(interaction, {
       embeds: [
         successEmbed(
