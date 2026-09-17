@@ -54,7 +54,7 @@ export default {
       throw new TitanBotError(
         'User not found',
         ErrorTypes.USER_INPUT,
-        'That user is not in this server.'
+        'That user has disappeared.'
       );
     }
 
@@ -74,7 +74,7 @@ export default {
       throw new TitanBotError(
         'Not jailed',
         ErrorTypes.VALIDATION,
-        `${user.tag} is not currently jailed.`
+        `${user.tag} is currently free.`
       );
     }
 
@@ -83,7 +83,7 @@ export default {
     await InteractionHelper.universalReply(interaction, {
       embeds: [
         successEmbed(
-          `🔓 ${user.tag} has been set free from the tomb.`,
+          `🔓 ${user.tag} has been freed from the tomb.`,
           `**Reason:** ${reason}`
         ),
       ],
