@@ -93,18 +93,8 @@ const member = await interaction.guild.members
       );
     }
 
-    await member.roles.add(jailRole, reason);
-    // Save the user's current roles before stripping them
-const savedRoles = member.roles.cache
-    .filter(role => role.id !== interaction.guild.id) // exclude @everyone
-    .map(role => role.id);
-
-// TODO: save savedRoles to your database/file
-await saveJailedRoles(member.id, savedRoles);
-
-// Remove all roles and give them only the Jailed role
-await member.roles.set([jailRole.id], reason);
-    
+await member.roles.add(jailRole, reason);
+ 
 await InteractionHelper.universalReply(interaction, {
       embeds: [
         successEmbed(
