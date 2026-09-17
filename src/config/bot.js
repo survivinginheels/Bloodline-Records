@@ -475,6 +475,22 @@ export const botConfig = {
     fun: true,
     music: true,
   },
+  @bot.command(/)
+@commands.has_permissions(manage_roles=True) # Restricts the command to staff
+async def jail(ctx, member: discord.Member, *, reason="No reason provided"):
+    jail_role = discord.utils.get(ctx.guild.roles, name="Jailed")
+    
+    if not jail_role:
+        return await ctx.send("❌ Create a role named 'Jailed' in your Discord server first!")
+
+    # Remove all roles (except the default @everyone role) and add the Jail role
+    roles_to_remove = [role for role in member.roles if role != ctx.guild.default_role]
+    try:
+        await member.remove_roles(*roles_to_remove, reason="Jailed")
+        await member.add_roles(jail_role, reason=reason)
+        await ctx.send(f"🔒 **{member.display_name}** has been jailed! Reason: {reason}")
+    except discord.Forbidden:
+        await ctx.send("❌ I don't have permission to manage this member's roles. Check my role hierarchy!")
 };
 
 export function validateConfig(config) {
