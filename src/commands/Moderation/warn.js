@@ -99,7 +99,7 @@ export default {
         await InteractionHelper.safeEditReply(interaction, {
             embeds: [
                 successEmbed(
-                    `⚠️ **Warned** ${target.tag}`,
+                    `⚠️ **Compelled** ${target.tag}`,
                     `**Reason:** ${reason}\n**Total Warns:** ${totalCount}`,
                 ),
             ],
