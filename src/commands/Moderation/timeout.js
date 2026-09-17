@@ -102,7 +102,7 @@ export default {
         await InteractionHelper.safeEditReply(interaction, {
             embeds: [
                 successEmbed(
-                    `🗡️ Daggered -- ${targetUser.tag} | ${durationDisplay}.`,
+                    `🗡️ ${targetUser.tag} has been daggered for ${durationDisplay}.`,
                     `**Reason:** ${reason}\n**Case ID:** #${result.caseId}`,
                 ),
             ],
