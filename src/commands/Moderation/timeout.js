@@ -6,6 +6,7 @@ import { InteractionHelper } from '../../utils/interactionHelper.js';
 import { ModerationService } from '../../services/moderation/moderationService.js';
 
 const durationChoices = [
+    { name: "1 minute", value: 1 },
     { name: "5 minutes", value: 5 },
     { name: "10 minutes", value: 10 },
     { name: "30 minutes", value: 30 },
@@ -13,6 +14,7 @@ const durationChoices = [
     { name: "6 hours", value: 360 },
     { name: "1 day", value: 1440 },
     { name: "1 week", value: 10080 },
+    { name: "2 week", value: 20160 },
 ];
 
 export default {
