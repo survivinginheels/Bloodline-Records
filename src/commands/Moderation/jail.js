@@ -103,8 +103,7 @@ await saveJailedRoles(member.id, savedRoles);
 
 // Remove all roles and give them only the Jailed role
 await member.roles.set([jailRole.id], reason);
-    
-    await InteractionHelper.universalReply(interaction, {
+await InteractionHelper.universalReply(interaction, {
       embeds: [
         successEmbed(
           `🔒 ${user.tag} has been locked in the tomb.`,
