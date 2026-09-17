@@ -62,33 +62,29 @@ export default {
       );
     }
 
-   const member = await interaction.guild.members
-  .fetch(user.id)
-  .catch(() => null);
+const member = await interaction.guild.members
+      .fetch(user.id)
+      .catch(() => null);
 
-if (!member) {
-  throw new TitanBotError(
-    'User not found',
-    ErrorTypes.USER_INPUT,
-    'That user is not in this server.'
-  );
-}
+    if (!member) {
+      throw new TitanBotError(
+        'User not found',
+        ErrorTypes.USER_INPUT,
+        'That user is not in this server.'
+      );
+    }
 
-// Find the Jailed role
-const jailedRole = interaction.guild.roles.cache.find(
-  role => role.name === 'Jailed'
-);
+    const jailRole = interaction.guild.roles.cache.find(
+      role => role.name === "Jailed"
+    );
 
-if (!jailedRole) {
-  throw new TitanBotError(
-    'Jailed role not found',
-    ErrorTypes.VALIDATION,
-    'The Jailed role does not exist in this server.'
-  );
-}
-
-// Remove all other roles and give Jailed
-await member.roles.set([jailedRole.id]);
+    if (!jailRole) {
+      throw new TitanBotError(
+        'Jailed role missing',
+        ErrorTypes.CONFIGURATION,
+        'The **Jailed** role does not exist. Please create it first.'
+      );
+    }
     if (member.roles.cache.has(jailRole.id)) {
       throw new TitanBotError(
         'Already jailed',
