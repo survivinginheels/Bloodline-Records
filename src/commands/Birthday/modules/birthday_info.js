@@ -16,9 +16,9 @@ export default {
         if (!birthdayData) {
             const embed = new EmbedBuilder()
                 .setColor(0xFF0000)
-                .setTitle('No Birthday Found')
+                .setTitle('Your Day Remains Unknown!)
                 .setDescription(targetUser.id === interaction.user.id 
-                    ? "You haven't set your birthday yet. Use `/birthday set` to add it!"
+                    ? "You haven't entered your birthday into the records yet. Use /birthday set to add it!"
                     : `${targetUser.username} hasn't set their birthday yet.`);
             return await InteractionHelper.safeEditReply(interaction, {
                 embeds: [embed]
@@ -28,7 +28,7 @@ export default {
         const embed = new EmbedBuilder()
             .setColor(0x00FF00)
             .setTitle('Birthday Information')
-            .setDescription(`**Date:** ${birthdayData.monthName} ${birthdayData.day}\n**User:** ${targetUser.toString()}`);
+            .setDescription(`**Date remembered:** ${birthdayData.monthName} ${birthdayData.day}\n**Name on record:** ${targetUser.toString()}`);
 
         await InteractionHelper.safeEditReply(interaction, {
             embeds: [embed]
