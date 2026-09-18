@@ -13,8 +13,8 @@ export default {
         if (next5.length === 0) {
             const embed = new EmbedBuilder()
                 .setColor(0xFF0000)
-                .setTitle('No Birthdays Found')
-                .setDescription('No birthdays have been set up in this server yet. Use `/birthday set` to add birthdays!');
+                .setTitle('No Days Remembered!')
+                .setDescription('No birthdays have been entered into the records yet. Use /birthday to add one!');
             return await InteractionHelper.safeEditReply(interaction, {
                 embeds: [embed]
             });
