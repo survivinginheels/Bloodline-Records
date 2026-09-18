@@ -24,8 +24,8 @@ export default {
 
         const embed = new EmbedBuilder()
             .setColor(0x00FF00)
-            .setTitle('Birthday Removed')
-            .setDescription('Your birthday has been successfully removed from the server.');
+            .setTitle('The Day Is Forgotten')
+            .setDescription('Your birthday has been wiped from the records.');
         await InteractionHelper.safeEditReply(interaction, {
             embeds: [embed]
         });
